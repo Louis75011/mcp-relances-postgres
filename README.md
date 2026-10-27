@@ -1,5 +1,8 @@
 # mcp-relances-postgres
 
+[![CI](https://github.com/Louis75011/mcp-relances-postgres/actions/workflows/ci.yml/badge.svg)](https://github.com/Louis75011/mcp-relances-postgres/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 [Français](#français) · [English](#english)
 
 ---
