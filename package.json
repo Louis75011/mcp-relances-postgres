@@ -1,0 +1,45 @@
+{
+  "name": "mcp-relances-postgres",
+  "version": "0.1.0",
+  "description": "Serveur MCP en lecture seule : quelles relances sont dues aujourd'hui ? (vue Postgres) / Read-only MCP server exposing a Postgres view of due follow-ups.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "author": "Louis Rouanet",
+  "main": "dist/index.js",
+  "bin": {
+    "mcp-relances-postgres": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "sql",
+    "LICENSE",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/index.js",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "seed": "psql \"$DATABASE_URL\" -v ON_ERROR_STOP=1 -f sql/schema.sql -f sql/seed.sql"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "pg": "^8.23.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.12",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.5",
+    "@types/pg": "^8.23.1",
+    "eslint": "^10.13.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^5.0.5"
+  }
+}
