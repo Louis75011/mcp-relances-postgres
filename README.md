@@ -43,21 +43,23 @@ Tests et contrôles : `npm run lint`, `npm run typecheck`, `npm test`. Les tests
 
 ### Lancer avec npx
 
-Sans cloner le dépôt (Node.js 20 ou plus, une base déjà initialisée avec `sql/schema.sql` et `sql/seed.sql`, voir « Installation ») :
+Sans cloner le dépôt ni passer par le registre npm : `npx` télécharge le dépôt depuis GitHub, le compile (script `prepare`) et lance le serveur. Prérequis : Node.js 20 ou plus, Git, et une base déjà initialisée avec `sql/schema.sql` et `sql/seed.sql` (voir « Installation »).
 
 ```bash
-DATABASE_URL="postgresql://utilisateur:motdepasse@localhost:5432/relances_demo" npx -y mcp-relances-postgres
+DATABASE_URL="postgresql://utilisateur:motdepasse@localhost:5432/relances_demo" npx -y github:Louis75011/mcp-relances-postgres
 ```
 
-Le serveur parle MCP sur stdio : il attend un client et n'affiche rien d'autre que « prêt » sur stderr. Pour le déclarer dans Claude Code :
+Le premier lancement est plus long (installation et compilation) ; les suivants réutilisent le cache de `npx`. Le serveur parle MCP sur stdio : il attend un client et n'affiche rien d'autre que « prêt » sur stderr. Pour le déclarer dans Claude Code :
 
 ```bash
 claude mcp add relances \
   -e DATABASE_URL="postgresql://utilisateur:motdepasse@localhost:5432/relances_demo" \
-  -- npx -y mcp-relances-postgres
+  -- npx -y github:Louis75011/mcp-relances-postgres
 ```
 
-ou dans `claude_desktop_config.json` : `"command": "npx"` et `"args": ["-y", "mcp-relances-postgres"]`, avec `DATABASE_URL` dans `env`.
+ou dans `claude_desktop_config.json` : `"command": "npx"` et `"args": ["-y", "github:Louis75011/mcp-relances-postgres"]`, avec `DATABASE_URL` dans `env`.
+
+Une fois le paquet publié sur npm, `github:Louis75011/mcp-relances-postgres` pourra être remplacé par `mcp-relances-postgres`.
 
 ### Exemple d'appel depuis Claude
 
@@ -167,21 +169,23 @@ Checks: `npm run lint`, `npm run typecheck`, `npm test`. Tests run on in-memory 
 
 ### Run with npx
 
-Without cloning the repository (Node.js 20 or later, a database already initialised with `sql/schema.sql` and `sql/seed.sql`, see "Installation"):
+Without cloning the repository or going through the npm registry: `npx` downloads the repository from GitHub, builds it (`prepare` script) and starts the server. Requirements: Node.js 20 or later, Git, and a database already initialised with `sql/schema.sql` and `sql/seed.sql` (see "Installation").
 
 ```bash
-DATABASE_URL="postgresql://user:password@localhost:5432/relances_demo" npx -y mcp-relances-postgres
+DATABASE_URL="postgresql://user:password@localhost:5432/relances_demo" npx -y github:Louis75011/mcp-relances-postgres
 ```
 
-The server speaks MCP over stdio: it waits for a client and prints nothing but "ready" on stderr. To register it in Claude Code:
+The first run is slower (install and build); later runs use the `npx` cache. The server speaks MCP over stdio: it waits for a client and prints nothing but "ready" on stderr. To register it in Claude Code:
 
 ```bash
 claude mcp add relances \
   -e DATABASE_URL="postgresql://user:password@localhost:5432/relances_demo" \
-  -- npx -y mcp-relances-postgres
+  -- npx -y github:Louis75011/mcp-relances-postgres
 ```
 
-or in `claude_desktop_config.json`: `"command": "npx"` and `"args": ["-y", "mcp-relances-postgres"]`, with `DATABASE_URL` under `env`.
+or in `claude_desktop_config.json`: `"command": "npx"` and `"args": ["-y", "github:Louis75011/mcp-relances-postgres"]`, with `DATABASE_URL` under `env`.
+
+Once the package is published on npm, `github:Louis75011/mcp-relances-postgres` can be replaced by `mcp-relances-postgres`.
 
 ### Example call from Claude
 

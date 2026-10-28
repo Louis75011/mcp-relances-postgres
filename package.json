@@ -40,7 +40,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "seed": "psql \"$DATABASE_URL\" -v ON_ERROR_STOP=1 -f sql/schema.sql -f sql/seed.sql",
-    "prepack": "npm run build"
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
