@@ -41,6 +41,24 @@ Variables d'environnement : `DATABASE_URL` (obligatoire), `MAX_ROWS` (facultatif
 
 Tests et contrôles : `npm run lint`, `npm run typecheck`, `npm test`. Les tests tournent sur Postgres en mémoire ([PGlite](https://pglite.dev)) ; avec `DATABASE_URL` défini, deux tests d'intégration s'exécutent aussi sur un vrai Postgres.
 
+### Lancer avec npx
+
+Sans cloner le dépôt (Node.js 20 ou plus, une base déjà initialisée avec `sql/schema.sql` et `sql/seed.sql`, voir « Installation ») :
+
+```bash
+DATABASE_URL="postgresql://utilisateur:motdepasse@localhost:5432/relances_demo" npx -y mcp-relances-postgres
+```
+
+Le serveur parle MCP sur stdio : il attend un client et n'affiche rien d'autre que « prêt » sur stderr. Pour le déclarer dans Claude Code :
+
+```bash
+claude mcp add relances \
+  -e DATABASE_URL="postgresql://utilisateur:motdepasse@localhost:5432/relances_demo" \
+  -- npx -y mcp-relances-postgres
+```
+
+ou dans `claude_desktop_config.json` : `"command": "npx"` et `"args": ["-y", "mcp-relances-postgres"]`, avec `DATABASE_URL` dans `env`.
+
 ### Exemple d'appel depuis Claude
 
 Déclarer le serveur dans Claude Code :
@@ -146,6 +164,24 @@ For a real database, create the role from `sql/lecteur-lecture-seule.sql`: it ca
 Environment variables: `DATABASE_URL` (required), `MAX_ROWS` (optional, 50 by default, 200 at most).
 
 Checks: `npm run lint`, `npm run typecheck`, `npm test`. Tests run on in-memory Postgres ([PGlite](https://pglite.dev)); when `DATABASE_URL` is set, two integration tests also run against a real Postgres.
+
+### Run with npx
+
+Without cloning the repository (Node.js 20 or later, a database already initialised with `sql/schema.sql` and `sql/seed.sql`, see "Installation"):
+
+```bash
+DATABASE_URL="postgresql://user:password@localhost:5432/relances_demo" npx -y mcp-relances-postgres
+```
+
+The server speaks MCP over stdio: it waits for a client and prints nothing but "ready" on stderr. To register it in Claude Code:
+
+```bash
+claude mcp add relances \
+  -e DATABASE_URL="postgresql://user:password@localhost:5432/relances_demo" \
+  -- npx -y mcp-relances-postgres
+```
+
+or in `claude_desktop_config.json`: `"command": "npx"` and `"args": ["-y", "mcp-relances-postgres"]`, with `DATABASE_URL` under `env`.
 
 ### Example call from Claude
 

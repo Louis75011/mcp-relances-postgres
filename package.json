@@ -2,10 +2,24 @@
   "name": "mcp-relances-postgres",
   "version": "0.1.0",
   "description": "Serveur MCP en lecture seule : quelles relances sont dues aujourd'hui ? (vue Postgres) / Read-only MCP server exposing a Postgres view of due follow-ups.",
-  "private": true,
   "type": "module",
   "license": "MIT",
   "author": "Louis Rouanet",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Louis75011/mcp-relances-postgres.git"
+  },
+  "homepage": "https://github.com/Louis75011/mcp-relances-postgres#readme",
+  "bugs": {
+    "url": "https://github.com/Louis75011/mcp-relances-postgres/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "postgres",
+    "read-only",
+    "claude"
+  ],
   "main": "dist/index.js",
   "bin": {
     "mcp-relances-postgres": "dist/index.js"
@@ -25,7 +39,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "seed": "psql \"$DATABASE_URL\" -v ON_ERROR_STOP=1 -f sql/schema.sql -f sql/seed.sql"
+    "seed": "psql \"$DATABASE_URL\" -v ON_ERROR_STOP=1 -f sql/schema.sql -f sql/seed.sql",
+    "prepack": "npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
